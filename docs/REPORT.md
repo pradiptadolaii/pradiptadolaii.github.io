@@ -22,7 +22,7 @@ Three featured projects, public GitHub links, résumé preview and PDF download,
 
 All 20 original certificate files are preserved byte-for-byte; hashes are in asset-inventory.json. All have actual thumbnail previews. Issuer verification addresses come from document text; external issuer checks are not claimed. Dates on four image-only documents require manual review. Legacy source dates are retained privately in structured metadata for audit.
 
-The PDF résumé mentions SkillMed ISO 13485, Oracle Agentic AI and Google AI for Data Analysis; corresponding documents were not supplied with this request. The Johnson & Johnson certificate was not attached. No screenshot of a real project dashboard was supplied; the OncoLens illustration is explicitly a schematic. ECG details are intentionally limited to the user-provided project title and general topic; private code is not copied. The public OncoLens README governs implementation claims and no accuracy number is asserted.
+The PDF résumé mentions SkillMed ISO 13485, Oracle Agentic AI and Google AI for Data Analysis; corresponding documents were not supplied with this request. The Johnson & Johnson certificate was supplied later and is now integrated. No screenshot of a real project dashboard was supplied; the OncoLens illustration is explicitly a schematic. ECG details are intentionally limited to the user-provided project title and general topic; private code is not copied. The public OncoLens README governs implementation claims and no accuracy number is asserted.
 
 ## Validation
 
@@ -60,3 +60,13 @@ PASS browser: all five experience entries present; all GitHub/LinkedIn destinati
 Moved About Me directly after the hero, split Education into its own section, then placed Projects and Experience. Navigation and section numbering match the new progression. Added 14 labelled, self-hosted toolbox marks, with Devicon MIT licensing and trademark notices retained in assets/icons.
 
 PASS: browser DOM order is home → about → education → projects → experience → skills → certifications → resume → contact; all 14 logos loaded; no desktop overflow; Education navigation closes the mobile menu. Local reference/asset/hash validation now inspects 122 references.
+
+## Project evidence and password-protected report
+
+Added the supplied Johnson & Johnson MedTech Robotics and Controls Forage completion certificate dated October 16, 2026. The certificate gallery now contains 21 preserved documents, and the certificate links from both Project 3 and the corresponding virtual-experience entry.
+
+Added a cropped robotics program photograph from the user-supplied screenshot to Project 3; added explicitly conceptual ECG and brain-imaging artwork to the other project cards. The imagery does not imply a live device screenshot or clinical result.
+
+The diagnostic report uses a password unlock dialog with browser-side PBKDF2-SHA-256 (600,000 iterations) and AES-256-GCM. Only a salted encrypted payload is deployed; the original DOCX and readable report HTML stay outside public assets and Git history. The password is selected in a local setup page and is never sent to its server. After unlocking, the readable report appears in a sandboxed frame, and the original DOCX can be downloaded. Closing or locking the dialog clears the view and revokes its download URL. Approved readers can retain a downloaded copy; changing a password requires re-encrypting and replacing the payload.
+
+PASS: isolated browser integration test rejected an incorrect password, decrypted the test report with its correct test password, enabled the original download, and removed both readable content and download URL on re-lock. The owner’s password was not read. The actual encrypted payload passes schema/salt/IV checks; publication checks reject plaintext diagnostic-report files.

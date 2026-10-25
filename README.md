@@ -25,3 +25,7 @@ Protect main with required review/status checks and, if desired, add required re
 - Workflow reference: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
 
 The original HTML backup is delivered separately as original-portfolio-backup.html and excluded from the public site. Existing certificate documents are not licensed for unrestricted reuse. No project or model software license is inferred.
+
+## Protected diagnostic report
+
+Project 3's diagnostic report is encrypted with AES-256-GCM and a PBKDF2-SHA-256 key derived from the reader's password (600,000 iterations, random 16-byte salt and 12-byte IV). The public asset contains only ciphertext and derivation parameters. No plaintext report, hard-coded password, or unlock key is committed. The owner sets the password through a local browser setup utility outside this repository. After unlocking, the readable report is rendered in a sandboxed iframe and the original DOCX is available as a temporary Blob download. Lock/close clears it. Password changes require replacing the encrypted payload; copies already downloaded by an approved reader cannot be revoked.

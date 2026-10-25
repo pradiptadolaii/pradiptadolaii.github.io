@@ -98,5 +98,10 @@
     "file": "assets/certificates/Coursera_Y0XVGKBI4NT1.pdf",
     "sha256": "fa707f1d387a559aa3d87108c01af68794dd9ff511f88055a164878066be0d4c",
     "bytes": 356750
+  },
+  {
+    "file": "assets/certificates/Johnson_Johnson_Robotics_Controls_Forage.pdf",
+    "sha256": "3a6983972a0f118cf5facdd5862e9036637a687fc3a6f4c1a4d8e46b2b30ebdb",
+    "bytes": 251074
   }
 ]

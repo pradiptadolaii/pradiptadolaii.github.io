@@ -218,5 +218,16 @@
     "verification": null,
     "status": "Document preserved; issuer verification not checked",
     "thumbnail": "assets/images/cert-19.webp"
+  },
+  {
+    "title": "Robotics and Controls Job Simulation",
+    "issuer": "Johnson & Johnson MedTech \u00b7 Forage",
+    "category": "Virtual experience",
+    "file": "assets/certificates/Johnson_Johnson_Robotics_Controls_Forage.pdf",
+    "date": "October 16, 2026",
+    "sourceDate": "October 16, 2026",
+    "verification": null,
+    "status": "Completion document supplied; issuer verification not independently checked",
+    "thumbnail": "assets/images/cert-20.webp"
   }
 ]
