@@ -28,9 +28,13 @@ inquiryForm.addEventListener('submit',event=>{
   if(!name){document.querySelector('#inquiry-name').setCustomValidity('Please enter your name.');inquiryForm.reportValidity();return;}
   if(message.length<10){document.querySelector('#inquiry-message').setCustomValidity('Please include at least 10 characters of message context.');inquiryForm.reportValidity();return;}
   inquiryText=`Hello Pradipta,\n\n${message}\n\nFrom: ${name}\nReply email: ${email}\nTopic: ${topic}`;
-  document.querySelector('#inquiry-send').href=`mailto:ipradiptadolai@gmail.com?subject=${encodeURIComponent(topic+' — '+name)}&body=${encodeURIComponent(inquiryText)}`;
+  const subject=topic+' — '+name;
+  const mailtoUrl=`mailto:ipradiptadolai@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(inquiryText)}`;
+  document.querySelector('#inquiry-send').href=mailtoUrl;
+  document.querySelector('#inquiry-gmail').href=`https://mail.google.com/mail/?view=cm&fs=1&to=ipradiptadolai%40gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(inquiryText)}`;
   document.querySelector('#inquiry-draft').hidden=false;
-  document.querySelector('#inquiry-status').textContent='Your inquiry is prepared. Open your email app to review and send it.';
+  document.querySelector('#inquiry-status').textContent='Opening your email app. Review and send your inquiry there, or use an option below.';
+  try{window.location.assign(mailtoUrl)}catch{document.querySelector('#inquiry-status').textContent='Choose an email option below to send your inquiry.'}
 });
 inquiryForm.addEventListener('input',()=>{document.querySelector('#inquiry-name').setCustomValidity('');document.querySelector('#inquiry-message').setCustomValidity('');document.querySelector('#inquiry-draft').hidden=true;inquiryText='';});
 inquiryForm.addEventListener('change',()=>{document.querySelector('#inquiry-draft').hidden=true;inquiryText='';});

@@ -74,3 +74,7 @@ PASS: isolated browser integration test rejected an incorrect password, decrypte
 Added the supplied STTP_CER.pdf unchanged, with a real thumbnail, to the Biomedical gallery. Education includes the requested STTP wording and a certificate preview link. The certificate identifies Adamas University and programme dates August 17–24, 2026; an issue date is not asserted. Gallery total is now 22 preserved documents.
 
 Replaced the MRI and ECG schematics with optimized, locally hosted AI-generated editorial-style images. Each is visibly labelled illustrative; neither is presented as an actual project screenshot, patient image, or built prototype. The supplied robotics photograph is retained. Prompts and provenance are documented in docs/PROJECT_IMAGE_DETAILS.md.
+
+The inquiry form now opens a pre-addressed email immediately after successful validation. It retains an Open email app retry link, adds a correctly encoded Gmail compose fallback, and supports copying the inquiry. Visitors review and send through their own email provider; the website does not claim server-side delivery.
+
+Generated mailto and Gmail compose links were verified with recipient, subject, sender contact and encoded message intact. Browser automation security blocked the external email-app launch, so that final operating-system handoff requires a manual visitor test. No test message was sent.
