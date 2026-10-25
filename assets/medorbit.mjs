@@ -1,4 +1,4 @@
-import {answerQuestion} from './medorbit-knowledge.mjs?v=final-guide';
+import {answerQuestion} from './medorbit-knowledge.mjs?v=oncolens-live';
 const launcher=document.querySelector('#medorbit-launcher'),panel=document.querySelector('#medorbit-panel'),input=document.querySelector('#medorbit-input'),log=document.querySelector('#medorbit-log');
 let context=null;
 function message(text,kind='assistant',source){const row=document.createElement('div');row.className='orbit-message '+kind;const author=document.createElement('small');author.textContent=kind==='user'?'You':'MedOrbit';const body=document.createElement('p');body.textContent=text;row.append(author,body);if(source?.id){const link=document.createElement('a');link.href='#'+source.id;link.textContent=source.label+' ↗';link.addEventListener('click',close);row.append(link)}log.append(row);while(log.children.length>24)log.firstElementChild.remove();log.scrollTop=log.scrollHeight;}
