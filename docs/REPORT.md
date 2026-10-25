@@ -54,3 +54,9 @@ Expanded About Me and Education with source-backed university, school, specializ
 Replaced the simple contact alternative with an accessible inquiry form: required name/email/message, topic selection, native validation, prepared email draft, and optional copy. No message is sent until the visitor opens and sends from their own email app. No backend, tracking, or secret is involved.
 
 PASS browser: all five experience entries present; all GitHub/LinkedIn destinations include an icon; valid inquiry prepares a correctly encoded mailto draft; invalid email blocks preparation; editing hides the stale draft. Updated local reference count: 106 after new experience certificate links. JavaScript syntax and asset/hash checks pass.
+
+## Section order and toolbox update
+
+Moved About Me directly after the hero, split Education into its own section, then placed Projects and Experience. Navigation and section numbering match the new progression. Added 14 labelled, self-hosted toolbox marks, with Devicon MIT licensing and trademark notices retained in assets/icons.
+
+PASS: browser DOM order is home → about → education → projects → experience → skills → certifications → resume → contact; all 14 logos loaded; no desktop overflow; Education navigation closes the mobile menu. Local reference/asset/hash validation now inspects 122 references.
