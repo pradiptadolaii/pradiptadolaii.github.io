@@ -16,3 +16,23 @@ const search=document.querySelector('#search'),category=document.querySelector('
 function filter(){let count=0;for(const card of cards){const show=(!category.value||card.dataset.category===category.value)&&card.textContent.toLowerCase().includes(search.value.trim().toLowerCase());card.hidden=!show;if(show)count++}document.querySelector('#count').textContent=count?`${count} credential${count===1?'':'s'}`:'No credentials match. Try another search or category.'}
 search.addEventListener('input',filter);category.addEventListener('change',filter);
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){e.target.animate([{opacity:.55,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:500,easing:'ease-out'});observer.unobserve(e.target)}},{threshold:.08});document.querySelectorAll('main>section:not(.hero)').forEach(el=>observer.observe(el))}
+const inquiryForm=document.querySelector('#inquiry-form');
+let inquiryText='';
+inquiryForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!inquiryForm.reportValidity())return;
+  const name=document.querySelector('#inquiry-name').value.trim();
+  const email=document.querySelector('#inquiry-email').value.trim();
+  const topic=document.querySelector('#inquiry-topic').value;
+  const message=document.querySelector('#inquiry-message').value.trim();
+  if(!name){document.querySelector('#inquiry-name').setCustomValidity('Please enter your name.');inquiryForm.reportValidity();return;}
+  if(message.length<10){document.querySelector('#inquiry-message').setCustomValidity('Please include at least 10 characters of message context.');inquiryForm.reportValidity();return;}
+  inquiryText=`Hello Pradipta,\n\n${message}\n\nFrom: ${name}\nReply email: ${email}\nTopic: ${topic}`;
+  document.querySelector('#inquiry-send').href=`mailto:ipradiptadolai@gmail.com?subject=${encodeURIComponent(topic+' — '+name)}&body=${encodeURIComponent(inquiryText)}`;
+  document.querySelector('#inquiry-draft').hidden=false;
+  document.querySelector('#inquiry-status').textContent='Your inquiry is prepared. Open your email app to review and send it.';
+});
+inquiryForm.addEventListener('input',()=>{document.querySelector('#inquiry-name').setCustomValidity('');document.querySelector('#inquiry-message').setCustomValidity('');document.querySelector('#inquiry-draft').hidden=true;inquiryText='';});
+inquiryForm.addEventListener('change',()=>{document.querySelector('#inquiry-draft').hidden=true;inquiryText='';});
+document.querySelector('#inquiry-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(inquiryText);document.querySelector('#inquiry-status').textContent='Inquiry copied. Paste it into an email to ipradiptadolai@gmail.com.'}catch{document.querySelector('#inquiry-status').textContent='Copy is unavailable in this browser. Use Open email app to continue.'}});
+

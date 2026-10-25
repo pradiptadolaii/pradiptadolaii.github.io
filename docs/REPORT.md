@@ -46,3 +46,11 @@ GitHub Pages Actions workflow prepared. Pull requests run validation only; deplo
 
 index.html; assets/style.css; assets/theme.js; assets/app.js; assets/favicon.svg; assets/fonts/*; assets/images/portrait.webp; assets/images/cert-*.webp; assets/certificates/*; assets/resume/Pradipta_Dolai_Resume.pdf; data/certificates.json; docs/asset-inventory.json; docs/REPORT.md; scripts/check.mjs; scripts/package.mjs; .github/workflows/pages.yml; .gitignore; README.md.
 
+
+## Refinements from screenshot review
+
+Expanded About Me and Education with source-backed university, school, specialization, academic results, languages and training details. Added visible inline GitHub and LinkedIn platform marks to every social destination and contact icons. All five Forage virtual experiences now have separate entries: Johnson & Johnson MedTech, Deloitte, Quantium, TATA, VISTA; four supplied completion certificates link directly from those entries.
+
+Replaced the simple contact alternative with an accessible inquiry form: required name/email/message, topic selection, native validation, prepared email draft, and optional copy. No message is sent until the visitor opens and sends from their own email app. No backend, tracking, or secret is involved.
+
+PASS browser: all five experience entries present; all GitHub/LinkedIn destinations include an icon; valid inquiry prepares a correctly encoded mailto draft; invalid email blocks preparation; editing hides the stale draft. Updated local reference count: 106 after new experience certificate links. JavaScript syntax and asset/hash checks pass.
