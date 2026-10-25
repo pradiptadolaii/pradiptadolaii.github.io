@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {submitInquiry,inquiryEndpoint} from '../assets/inquiry-api.mjs';
+const payload={name:'Test Visitor',email:'visitor@example.com',topic:'Research inquiry',message:'A detailed research collaboration inquiry.',submitted_at_utc:'2026-10-25T12:00:00.000Z',source_page:'https://pradiptadolaii.github.io/#contact',_subject:'Portfolio inquiry: Research inquiry',_template:'table'};
+let sent;
+const good=await submitInquiry(payload,{fetchImpl:async(url,request)=>{sent={url,request};return {ok:true,json:async()=>({success:'true',message:'Form submitted successfully'})}}});
+assert.equal(sent.url,inquiryEndpoint);assert.equal(sent.request.method,'POST');assert.deepEqual(JSON.parse(sent.request.body),payload);assert.equal(good.activationNeeded,false);
+const pending=await submitInquiry(payload,{fetchImpl:async()=>({ok:true,json:async()=>({success:true,message:'Activate your email to receive submissions'})})});assert.equal(pending.activationNeeded,true);
+await assert.rejects(submitInquiry(payload,{fetchImpl:async()=>({ok:false})}));
+await assert.rejects(submitInquiry(payload,{fetchImpl:async()=>({ok:true,json:async()=>({success:false})})}));
+await assert.rejects(submitInquiry(payload,{fetchImpl:async()=>({ok:true,json:async()=>({message:'unconfirmed'})})}));
+await assert.rejects(submitInquiry(payload,{fetchImpl:async()=>{throw Error('offline')}}));
+console.log('PASS: complete field forwarding, success, activation state, HTTP rejection, unconfirmed replies, and offline failure.');

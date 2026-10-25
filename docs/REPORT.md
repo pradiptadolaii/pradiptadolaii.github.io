@@ -78,3 +78,8 @@ Replaced the MRI and ECG schematics with optimized, locally hosted AI-generated 
 The inquiry form now opens a pre-addressed email immediately after successful validation. It retains an Open email app retry link, adds a correctly encoded Gmail compose fallback, and supports copying the inquiry. Visitors review and send through their own email provider; the website does not claim server-side delivery.
 
 Generated mailto and Gmail compose links were verified with recipient, subject, sender contact and encoded message intact. Browser automation security blocked the external email-app launch, so that final operating-system handoff requires a manual visitor test. No test message was sent.
+
+
+## Direct inquiry delivery
+
+The contact form submits name, reply email, inquiry topic, message, UTC submission time, and source page through FormSubmit to ipradiptadolai@gmail.com. The owner confirmed email activation. The page shows pending, accepted, and failure states; failed submissions retain entered details. Duplicate submissions are blocked while pending. A honeypot and provider spam protection are retained. No private email credentials are deployed. The no-JavaScript fallback uses the standard FormSubmit POST endpoint. Provider acceptance does not independently confirm inbox receipt. Transport tests cover full field forwarding, activation, success, and service/network failures.

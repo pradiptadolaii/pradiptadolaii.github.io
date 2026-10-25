@@ -12,3 +12,5 @@
 .professional-image{padding:0!important;margin:0;display:block;position:relative;min-height:420px;overflow:hidden}.professional-image>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% center}.professional-image>figcaption{position:absolute;bottom:0;left:0;right:0;background:#10142acb;color:#f6f5f1;padding:10px 17px;font-size:11px;letter-spacing:.03em}.project-figure>img[src$="ecg-research-device.webp"]{object-position:center 48%}@media(max-width:760px){.professional-image{min-height:310px}.professional-image>img{object-position:60% center}}
 
 .robotics-figure img[src$="robotics-controls-lab.webp"]{object-fit:cover;object-position:center 48%}
+
+.inquiry-honeypot{display:none!important}.inquiry-feedback:empty{display:none}.inquiry-feedback{border:1px solid var(--line);border-left:3px solid var(--stone);border-radius:4px;padding:14px 16px;margin-top:22px;font-size:16px;background:var(--paper)}.inquiry-feedback.is-error{border-left-color:#bb6f53}.inquiry-feedback.is-success{border-left-color:#718c72}#inquiry-submit[disabled]{cursor:wait;opacity:.7}.inquiry-privacy{margin-top:22px;line-height:1.6}

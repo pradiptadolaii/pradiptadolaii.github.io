@@ -20,4 +20,5 @@ assert.deepEqual(Object.keys(locked).sort(),['algorithm','ciphertext','hash','it
 assert.equal(locked.algorithm,'AES-GCM');assert.equal(locked.kdf,'PBKDF2');assert.equal(locked.iterations,600000);assert.equal(Buffer.from(locked.salt,'base64').length,16);assert.equal(Buffer.from(locked.iv,'base64').length,12);assert.ok(Buffer.from(locked.ciphertext,'base64').length>16);
 function inspectPublic(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const path=dir+'/'+entry.name;if(entry.isDirectory())inspectPublic(path);else assert.ok(!/Diagnostic_Report_Final\.(docx|html|pdf)$/i.test(path),'Plaintext diagnostic report must not be deployed');}}
 inspectPublic('assets');
+await import('./test-inquiry.mjs');
 console.log(`PASS: ${links} local/anchor/external references inspected; 22 certificate hashes, thumbnails, resume signature, font paths, content checks.`);

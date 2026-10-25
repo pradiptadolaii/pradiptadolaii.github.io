@@ -29,3 +29,8 @@ The original HTML backup is delivered separately as original-portfolio-backup.ht
 ## Protected diagnostic report
 
 Project 3's diagnostic report is encrypted with AES-256-GCM and a PBKDF2-SHA-256 key derived from the reader's password (600,000 iterations, random 16-byte salt and 12-byte IV). The public asset contains only ciphertext and derivation parameters. No plaintext report, hard-coded password, or unlock key is committed. The owner sets the password through a local browser setup utility outside this repository. After unlocking, the readable report is rendered in a sandboxed iframe and the original DOCX is available as a temporary Blob download. Lock/close clears it. Password changes require replacing the encrypted payload; copies already downloaded by an approved reader cannot be revoked.
+
+
+## Direct inquiry delivery
+
+The contact form submits name, reply email, inquiry topic, message, UTC submission time, and source page through FormSubmit to ipradiptadolai@gmail.com. The owner confirmed email activation. The page shows pending, accepted, and failure states; failed submissions retain entered details. Duplicate submissions are blocked while pending. A honeypot and provider spam protection are retained. No private email credentials are deployed. The no-JavaScript fallback uses the standard FormSubmit POST endpoint. Provider acceptance does not independently confirm inbox receipt. Transport tests cover full field forwarding, activation, success, and service/network failures.

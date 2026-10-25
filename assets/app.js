@@ -17,28 +17,23 @@ function filter(){let count=0;for(const card of cards){const show=(!category.val
 search.addEventListener('input',filter);category.addEventListener('change',filter);
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){e.target.animate([{opacity:.55,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:500,easing:'ease-out'});observer.unobserve(e.target)}},{threshold:.08});document.querySelectorAll('main>section:not(.hero)').forEach(el=>observer.observe(el))}
 const inquiryForm=document.querySelector('#inquiry-form');
-let inquiryText='';
-inquiryForm.addEventListener('submit',event=>{
-  event.preventDefault();
-  if(!inquiryForm.reportValidity())return;
-  const name=document.querySelector('#inquiry-name').value.trim();
-  const email=document.querySelector('#inquiry-email').value.trim();
-  const topic=document.querySelector('#inquiry-topic').value;
-  const message=document.querySelector('#inquiry-message').value.trim();
-  if(!name){document.querySelector('#inquiry-name').setCustomValidity('Please enter your name.');inquiryForm.reportValidity();return;}
-  if(message.length<10){document.querySelector('#inquiry-message').setCustomValidity('Please include at least 10 characters of message context.');inquiryForm.reportValidity();return;}
-  inquiryText=`Hello Pradipta,\n\n${message}\n\nFrom: ${name}\nReply email: ${email}\nTopic: ${topic}`;
-  const subject=topic+' — '+name;
-  const mailtoUrl=`mailto:ipradiptadolai@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(inquiryText)}`;
-  document.querySelector('#inquiry-send').href=mailtoUrl;
-  document.querySelector('#inquiry-gmail').href=`https://mail.google.com/mail/?view=cm&fs=1&to=ipradiptadolai%40gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(inquiryText)}`;
-  document.querySelector('#inquiry-draft').hidden=false;
-  document.querySelector('#inquiry-status').textContent='Opening your email app. Review and send your inquiry there, or use an option below.';
-  try{window.location.assign(mailtoUrl)}catch{document.querySelector('#inquiry-status').textContent='Choose an email option below to send your inquiry.'}
+let inquiryPending=false;
+inquiryForm.addEventListener('submit',async event=>{
+ event.preventDefault();if(inquiryPending||!inquiryForm.reportValidity())return;
+ const status=document.querySelector('#inquiry-status'),button=document.querySelector('#inquiry-submit');
+ const name=document.querySelector('#inquiry-name'),email=document.querySelector('#inquiry-email'),message=document.querySelector('#inquiry-message');
+ if(!name.value.trim()){name.setCustomValidity('Please enter your name.');inquiryForm.reportValidity();return;}
+ if(message.value.trim().length<10){message.setCustomValidity('Please include at least 10 characters of message context.');inquiryForm.reportValidity();return;}
+ const honey=inquiryForm.elements.namedItem('_honey').value;if(honey)return;
+ const payload={name:name.value.trim(),email:email.value.trim(),topic:document.querySelector('#inquiry-topic').value,message:message.value.trim(),submitted_at_utc:new Date().toISOString(),source_page:location.href,_honey:'',_subject:'Portfolio inquiry: '+document.querySelector('#inquiry-topic').value,_template:'table',_url:location.href};
+ const controls=[...inquiryForm.querySelectorAll('input,select,textarea')];controls.forEach(control=>control.disabled=true);inquiryPending=true;button.disabled=true;button.setAttribute('aria-busy','true');const previous=button.innerHTML;button.textContent='Sending…';status.textContent='Submitting your inquiry…';status.classList.remove('is-error','is-success');
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
+ try{const {submitInquiry}=await import('./inquiry-api.mjs');const result=await submitInquiry(payload,{signal:controller.signal});
+  status.textContent=result.activationNeeded?'Your inquiry was received. Email delivery is waiting for the site owner to activate this form.':'Your inquiry has been submitted. Thank you for getting in touch.';status.classList.add('is-success');if(!result.activationNeeded)inquiryForm.reset();
+ }catch{status.textContent='Your inquiry could not be confirmed. Your details are still here—please try again, or use the email link below.';status.classList.add('is-error');}
+ finally{clearTimeout(timeout);controls.forEach(control=>control.disabled=false);inquiryPending=false;button.disabled=false;button.removeAttribute('aria-busy');button.innerHTML=previous;}
 });
-inquiryForm.addEventListener('input',()=>{document.querySelector('#inquiry-name').setCustomValidity('');document.querySelector('#inquiry-message').setCustomValidity('');document.querySelector('#inquiry-draft').hidden=true;inquiryText='';});
-inquiryForm.addEventListener('change',()=>{document.querySelector('#inquiry-draft').hidden=true;inquiryText='';});
-document.querySelector('#inquiry-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(inquiryText);document.querySelector('#inquiry-status').textContent='Inquiry copied. Paste it into an email to ipradiptadolai@gmail.com.'}catch{document.querySelector('#inquiry-status').textContent='Copy is unavailable in this browser. Use Open email app to continue.'}});
+inquiryForm.addEventListener('input',()=>{document.querySelector('#inquiry-name').setCustomValidity('');document.querySelector('#inquiry-message').setCustomValidity('');});
 
 const reportDialog=document.querySelector('#report-dialog'),reportForm=document.querySelector('#report-unlock-form'),reportStatus=document.querySelector('#report-status');
 let reportDownloadUrl=null;
@@ -67,4 +62,5 @@ reportForm.addEventListener('submit',async event=>{
  }catch(error){if(generation!==reportUnlockGeneration||!reportDialog.open)return;input.value='';reportStatus.textContent=error.message==='unavailable'?'The protected report is currently unavailable. Please try again later.':'The password could not unlock this report. Please check it and try again.';input.focus()}
  finally{button.disabled=false}
 });
+
 
