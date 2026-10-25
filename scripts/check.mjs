@@ -21,4 +21,5 @@ assert.equal(locked.algorithm,'AES-GCM');assert.equal(locked.kdf,'PBKDF2');asser
 function inspectPublic(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const path=dir+'/'+entry.name;if(entry.isDirectory())inspectPublic(path);else assert.ok(!/Diagnostic_Report_Final\.(docx|html|pdf)$/i.test(path),'Plaintext diagnostic report must not be deployed');}}
 inspectPublic('assets');
 await import('./test-inquiry.mjs');
+await import('./test-medorbit.mjs');
 console.log(`PASS: ${links} local/anchor/external references inspected; 22 certificate hashes, thumbnails, resume signature, font paths, content checks.`);

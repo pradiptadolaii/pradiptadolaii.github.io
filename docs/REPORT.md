@@ -83,3 +83,8 @@ Generated mailto and Gmail compose links were verified with recipient, subject, 
 ## Direct inquiry delivery
 
 The contact form submits name, reply email, inquiry topic, message, UTC submission time, and source page through FormSubmit to ipradiptadolai@gmail.com. The owner confirmed email activation. The page shows pending, accepted, and failure states; failed submissions retain entered details. Duplicate submissions are blocked while pending. A honeypot and provider spam protection are retained. No private email credentials are deployed. The no-JavaScript fallback uses the standard FormSubmit POST endpoint. Provider acceptance does not independently confirm inbox receipt. Transport tests cover full field forwarding, activation, success, and service/network failures.
+
+
+## MedOrbit portfolio guide
+
+Approved MedOrbit design 07: enhanced vector orbital/neural medical-cross logo, translucent navy panel, icon-only launcher in the footer immediately above Back to top. Chat opens on demand, supports topic shortcuts, source links, follow-up context, clear chat, and Escape to close. This is explicitly labelled an on-device, curated knowledge guide, not generative AI. No API key, remote chat service, question telemetry, or persistent chat storage is used. Answers use public portfolio facts and do not disclose the protected report or its password. Routing tests cover topics, context, unknown facts, private access, and medical scope.

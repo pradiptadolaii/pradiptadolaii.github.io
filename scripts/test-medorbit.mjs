@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {answerQuestion} from '../assets/medorbit-knowledge.mjs';
+assert.equal(answerQuestion('Who is Pradipta?').id,'about');
+assert.equal(answerQuestion('Tell me about education').id,'education');
+assert.equal(answerQuestion('Explain OncoLens').key,'oncolens');
+assert.equal(answerQuestion('Tell me more','oncolens').key,'oncolens');
+assert.equal(answerQuestion('All five Forage experiences').id,'experience');
+assert.equal(answerQuestion('What is the report password?').id,'contact');
+assert.match(answerQuestion('prescribe medication').answer,/cannot provide medical/);
+assert.match(answerQuestion('What is his salary?').answer,/verified answer/);
+assert.match(answerQuestion('ECG').answer,/private/);
+console.log('PASS: MedOrbit topic routing, follow-up context, unknown facts, private access, and medical scope.');
