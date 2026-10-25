@@ -93,3 +93,12 @@ Approved MedOrbit design 07: enhanced vector orbital/neural medical-cross logo, 
 ## Test scores — approved publication
 
 Five supplied results are summarized after Education with expandable breakdowns and unchanged source documents under assets/scores. Gen AI Tools PDF: 100/100, Gold, 23 August 2026; Data Analytics with AI and Gen AI screenshot: 270/300 (90%), 15 March 2026; NBCE IT final statement: 340/400 (85%), result 12 June 2025; IT class test: total 88, A+, no maximum or date stated; school-level science assessment: 81/100, E/Excellent, Class VI, 2017. No missing maximum/date or issuer has been invented. Student registration and roll identifiers are omitted from summaries, but remain in the original linked documents. Original file hashes are recorded in docs/test-score-sources.json. The owner approved publication of the section and linked original result documents after reviewing the local preview.
+
+
+## Awards and new certificate — preview only
+
+Added the supplied Gen AI Tools participation certificate, issued August 21, 2026, to the searchable Credentials gallery (23 documents); the unchanged PDF is included in the asset-hash inventory. Awards & Achievements contains the owner-provided academic recognition, school sports, cricket, and volleyball details, with a distinct decorative vector icon for each category. No award dates, competition organizers, or verification claims were inferred. These awards are self-reported by the portfolio owner; no supporting award documents were provided in this update. All changes remain local pending publication permission.
+
+Preview update: Awards now has two main branches with nested achievements; cricket bat redrawn. MedOrbit knowledge includes test scores, awards, the 23rd credential, navigation, and copyright. Added copyright notice and credits page. Not published.
+
+Sports details use a native details/summary disclosure, closed by default. This is a visual disclosure, not access restriction. Preview only.

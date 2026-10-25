@@ -1,8 +1,8 @@
-import {answerQuestion} from './medorbit-knowledge.mjs';
+import {answerQuestion} from './medorbit-knowledge.mjs?v=final-guide';
 const launcher=document.querySelector('#medorbit-launcher'),panel=document.querySelector('#medorbit-panel'),input=document.querySelector('#medorbit-input'),log=document.querySelector('#medorbit-log');
 let context=null;
 function message(text,kind='assistant',source){const row=document.createElement('div');row.className='orbit-message '+kind;const author=document.createElement('small');author.textContent=kind==='user'?'You':'MedOrbit';const body=document.createElement('p');body.textContent=text;row.append(author,body);if(source?.id){const link=document.createElement('a');link.href='#'+source.id;link.textContent=source.label+' ↗';link.addEventListener('click',close);row.append(link)}log.append(row);while(log.children.length>24)log.firstElementChild.remove();log.scrollTop=log.scrollHeight;}
-function welcome(){context=null;log.replaceChildren();message('Hello! I’m MedOrbit. I can help you explore Pradipta’s background, education, projects, experience, skills, and credentials. What would you like to know?')}
+function welcome(){context=null;log.replaceChildren();message('Hello! I’m MedOrbit. I can help you explore Pradipta’s background, education, projects, experience, skills, test scores, credentials, awards, résumé, and contact details. What would you like to know?')}
 function open(){panel.hidden=false;launcher.setAttribute('aria-expanded','true');input.focus()}
 function close(){panel.hidden=true;launcher.setAttribute('aria-expanded','false');launcher.focus()}
 function ask(question){const value=question.trim().slice(0,400);if(!value)return;message(value,'user');const result=answerQuestion(value,context);context=result.context||null;message(result.answer,'assistant',result);input.value='';input.focus()}

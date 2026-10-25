@@ -108,5 +108,10 @@
     "file": "assets/certificates/STTP_CER.pdf",
     "sha256": "e1a87c483d187a58137a8760c7880dd3c724e155d5244d637439747a241b8fea",
     "bytes": 597200
+  },
+  {
+    "file": "assets/certificates/Gen_AI_Tools_Participation.pdf",
+    "sha256": "36e9ee4712d87f8458020ee8bf8f2c9586b2ae6c0c991fa9864ad72dc1d78b1d",
+    "bytes": 2623370
   }
 ]
