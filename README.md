@@ -1,2 +1,36 @@
-# pradiptadolaii.github.io
-Biomedical Engineering and AI for Healthcare portfolio
+# Pradipta Dolai portfolio
+
+Buildless HTML, CSS and JavaScript. All typography uses locally hosted Computer Modern Unicode web fonts (license in assets/fonts/LICENSE.txt).
+
+## Preview and validate
+
+Serve this folder using any local static HTTP server. Run `node scripts/check.mjs` to validate references, certificate hashes, and the résumé. Run `node scripts/package.mjs` to create the deployable `_site` directory. Only index.html, assets and data are published.
+
+## Content maintenance
+
+The supplied DOC-2026-F-PDOLAI.pdf is copied byte-for-byte to assets/resume/Pradipta_Dolai_Resume.pdf. Update all facts against the latest résumé before publishing. Certificate metadata lives in data/certificates.json; gallery markup is generated into index.html so it works without JavaScript. Change both together. No frontend GitHub token or live API is used; the public OncoLens card works without API rate limits.
+
+## Deployment
+
+A pull request validates without deploying. A push to main after an approved merge validates, packages, and deploys with GitHub Pages Actions. GitHub repository Settings → Pages must be configured to GitHub Actions. Publishing is not enabled or performed by this task. The repository is private pending owner review; private-repository Pages availability depends on the account plan. Do not change visibility without approval.
+
+Protect main with required review/status checks and, if desired, add required reviewers to the github-pages environment before enabling publication. Workflow YAML alone cannot enforce human approval or prevent a maintainer pushing directly to main.
+
+## Sources and assets
+
+- Supplied original HTML: all 20 certificate documents retained unchanged, tracked by SHA-256 in docs/asset-inventory.json.
+- Supplied latest PDF résumé: education, project, experience and contact source of truth.
+- Public OncoLens README: https://github.com/pradiptadolaii/OncoLens/blob/main/README.md
+- Computer Modern Unicode: https://github.com/bitmaks/cm-web-fonts (original copyright and SIL OFL retained).
+- Workflow reference: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+
+The original HTML backup is delivered separately as original-portfolio-backup.html and excluded from the public site. Existing certificate documents are not licensed for unrestricted reuse. No project or model software license is inferred.
+
+## Protected diagnostic report
+
+Project 3's diagnostic report is encrypted with AES-256-GCM and a PBKDF2-SHA-256 key derived from the reader's password (600,000 iterations, random 16-byte salt and 12-byte IV). The public asset contains only ciphertext and derivation parameters. No plaintext report, hard-coded password, or unlock key is committed. The owner sets the password through a local browser setup utility outside this repository. After unlocking, the readable report is rendered in a sandboxed iframe and the original DOCX is available as a temporary Blob download. Lock/close clears it. Password changes require replacing the encrypted payload; copies already downloaded by an approved reader cannot be revoked.
+
+
+## Direct inquiry delivery
+
+The contact form submits name, reply email, inquiry topic, message, UTC submission time, and source page through FormSubmit to ipradiptadolai@gmail.com. The owner confirmed email activation. The page shows pending, accepted, and failure states; failed submissions retain entered details. Duplicate submissions are blocked while pending. A honeypot and provider spam protection are retained. No private email credentials are deployed. The no-JavaScript fallback uses the standard FormSubmit POST endpoint. Provider acceptance does not independently confirm inbox receipt. Transport tests cover full field forwarding, activation, success, and service/network failures.

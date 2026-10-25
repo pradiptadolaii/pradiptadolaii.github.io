@@ -1,0 +1,1 @@
+Eleven tool SVGs are from Devicon (MIT): https://github.com/devicons/devicon . License retained in LICENSE.txt. Power BI, Microsoft Excel and Tableau use locally drawn identifying marks. Product names and trademarks belong to their respective owners; inclusion identifies tools used and does not imply endorsement.
