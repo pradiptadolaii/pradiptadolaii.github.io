@@ -1,0 +1,1 @@
+(()=>{document.documentElement.classList.add('js');let t;try{t=localStorage.getItem('theme')}catch{}document.documentElement.dataset.theme=t==='dark'||t==='light'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'})();
