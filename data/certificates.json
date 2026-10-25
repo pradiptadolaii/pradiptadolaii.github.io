@@ -229,5 +229,17 @@
     "verification": null,
     "status": "Completion document supplied; issuer verification not independently checked",
     "thumbnail": "assets/images/cert-20.webp"
+  },
+  {
+    "title": "Frontiers of Biomedical Engineering \u2014 STTP",
+    "issuer": "Adamas University",
+    "category": "Biomedical",
+    "file": "assets/certificates/STTP_CER.pdf",
+    "date": null,
+    "programmeDates": "August 17\u201324, 2026",
+    "sourceDate": "17-08-2026 to 24-08-2026",
+    "verification": null,
+    "status": "Completion certificate supplied; issue date not stated; issuer verification not independently checked",
+    "thumbnail": "assets/images/cert-21.webp"
   }
 ]

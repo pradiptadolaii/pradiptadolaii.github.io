@@ -103,5 +103,10 @@
     "file": "assets/certificates/Johnson_Johnson_Robotics_Controls_Forage.pdf",
     "sha256": "3a6983972a0f118cf5facdd5862e9036637a687fc3a6f4c1a4d8e46b2b30ebdb",
     "bytes": 251074
+  },
+  {
+    "file": "assets/certificates/STTP_CER.pdf",
+    "sha256": "e1a87c483d187a58137a8760c7880dd3c724e155d5244d637439747a241b8fea",
+    "bytes": 597200
   }
 ]
