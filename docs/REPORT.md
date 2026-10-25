@@ -88,3 +88,8 @@ The contact form submits name, reply email, inquiry topic, message, UTC submissi
 ## MedOrbit portfolio guide
 
 Approved MedOrbit design 07: enhanced vector orbital/neural medical-cross logo, translucent navy panel, icon-only launcher in the footer immediately above Back to top. Chat opens on demand, supports topic shortcuts, source links, follow-up context, clear chat, and Escape to close. This is explicitly labelled an on-device, curated knowledge guide, not generative AI. No API key, remote chat service, question telemetry, or persistent chat storage is used. Answers use public portfolio facts and do not disclose the protected report or its password. Routing tests cover topics, context, unknown facts, private access, and medical scope.
+
+
+## Test scores — approved publication
+
+Five supplied results are summarized after Education with expandable breakdowns and unchanged source documents under assets/scores. Gen AI Tools PDF: 100/100, Gold, 23 August 2026; Data Analytics with AI and Gen AI screenshot: 270/300 (90%), 15 March 2026; NBCE IT final statement: 340/400 (85%), result 12 June 2025; IT class test: total 88, A+, no maximum or date stated; school-level science assessment: 81/100, E/Excellent, Class VI, 2017. No missing maximum/date or issuer has been invented. Student registration and roll identifiers are omitted from summaries, but remain in the original linked documents. Original file hashes are recorded in docs/test-score-sources.json. The owner approved publication of the section and linked original result documents after reviewing the local preview.
