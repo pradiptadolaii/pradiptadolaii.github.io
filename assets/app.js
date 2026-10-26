@@ -5,8 +5,8 @@ syncTheme();
 theme.addEventListener('click',()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.setItem('theme',t)}catch{}syncTheme()});
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{let saved;try{saved=localStorage.getItem('theme')}catch{}if(!saved){document.documentElement.dataset.theme=e.matches?'dark':'light';syncTheme()}});
 const menu=document.querySelector('#menu'),nav=document.querySelector('#navigation');
-function closeMenu(){menu.setAttribute('aria-expanded','false');nav.classList.remove('open')}
-menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open)});
+function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation menu');nav.classList.remove('open')}
+menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');nav.classList.toggle('open',open)});
 nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){closeMenu();menu.focus()}});
 const dialog=document.querySelector('#preview'),content=document.querySelector('#preview-content');
@@ -62,5 +62,3 @@ reportForm.addEventListener('submit',async event=>{
  }catch(error){if(generation!==reportUnlockGeneration||!reportDialog.open)return;input.value='';reportStatus.textContent=error.message==='unavailable'?'The protected report is currently unavailable. Please try again later.':'The password could not unlock this report. Please check it and try again.';input.focus()}
  finally{button.disabled=false}
 });
-
-
