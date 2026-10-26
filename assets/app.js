@@ -38,13 +38,13 @@ inquiryForm.addEventListener('input',()=>{document.querySelector('#inquiry-name'
 const reportDialog=document.querySelector('#report-dialog'),reportForm=document.querySelector('#report-unlock-form'),reportStatus=document.querySelector('#report-status');
 let reportDownloadUrl=null;
 let reportUnlockGeneration=0;
-function lockDiagnosticReport(){reportUnlockGeneration++;document.querySelector('#report-password').value='';document.querySelector('#report-gate').hidden=false;document.querySelector('#report-unlocked').hidden=true;document.querySelector('#report-viewer').removeAttribute('srcdoc');document.querySelector('#report-download').removeAttribute('href');if(reportDownloadUrl){URL.revokeObjectURL(reportDownloadUrl);reportDownloadUrl=null}reportStatus.textContent='';}
+function lockDiagnosticReport(){window.PasswordTile.reset();reportUnlockGeneration++;document.querySelector('#report-password').value='';document.querySelector('#report-gate').hidden=false;document.querySelector('#report-unlocked').hidden=true;document.querySelector('#report-viewer').removeAttribute('srcdoc');document.querySelector('#report-download').removeAttribute('href');if(reportDownloadUrl){URL.revokeObjectURL(reportDownloadUrl);reportDownloadUrl=null}reportStatus.textContent='';}
 document.querySelector('#report-open').addEventListener('click',()=>{lockDiagnosticReport();reportDialog.showModal()});
 document.querySelector('#report-close').addEventListener('click',()=>reportDialog.close());
 document.querySelector('#report-relock').addEventListener('click',()=>{lockDiagnosticReport();document.querySelector('#report-password').focus()});
 reportDialog.addEventListener('close',lockDiagnosticReport);
 reportForm.addEventListener('submit',async event=>{
- event.preventDefault();const generation=reportUnlockGeneration;const input=document.querySelector('#report-password'),button=document.querySelector('#report-unlock');button.disabled=true;reportStatus.textContent='Unlocking report…';
+ event.preventDefault();const generation=reportUnlockGeneration;const input=document.querySelector('#report-password'),button=document.querySelector('#report-unlock');button.disabled=true;reportStatus.textContent='Verifying report password…';window.PasswordTile.checking(reportDialog);
  try{
   const response=await fetch('assets/private/diagnostic-report.encrypted.json',{cache:'no-store'});
   if(!response.ok)throw new Error('unavailable');
@@ -54,11 +54,16 @@ reportForm.addEventListener('submit',async event=>{
   const material=await crypto.subtle.importKey('raw',new TextEncoder().encode(input.value),'PBKDF2',false,['deriveKey']);
   const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:bytes(encrypted.salt),iterations:encrypted.iterations,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['decrypt']);
   const decrypted=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes(encrypted.iv)},key,bytes(encrypted.ciphertext));
-  const report=JSON.parse(new TextDecoder().decode(decrypted));if(generation!==reportUnlockGeneration||!reportDialog.open)return;
+  const report=JSON.parse(new TextDecoder().decode(decrypted));if(generation!==reportUnlockGeneration||!reportDialog.open)return;window.PasswordTile.success(reportDialog);
   document.querySelector('#report-viewer').srcdoc=report.html;
   reportDownloadUrl=URL.createObjectURL(new Blob([bytes(report.docx)],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}));
   document.querySelector('#report-download').href=reportDownloadUrl;
   document.querySelector('#report-gate').hidden=true;document.querySelector('#report-unlocked').hidden=false;input.value='';reportStatus.textContent='Report unlocked for this viewing session.';
- }catch(error){if(generation!==reportUnlockGeneration||!reportDialog.open)return;input.value='';reportStatus.textContent=error.message==='unavailable'?'The protected report is currently unavailable. Please try again later.':'The password could not unlock this report. Please check it and try again.';input.focus()}
+ }catch(error){if(generation!==reportUnlockGeneration||!reportDialog.open)return;window.PasswordTile.error(reportDialog);input.value='';reportStatus.textContent=error.message==='unavailable'?'The protected report is currently unavailable. Please try again later.':'Incorrect password. Please try again.';input.focus()}
  finally{button.disabled=false}
 });
+
+
+
+
+if(new URLSearchParams(location.search).get('open')==='report'){lockDiagnosticReport();reportDialog.showModal()}
