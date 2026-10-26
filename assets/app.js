@@ -7,6 +7,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{let sav
 const menu=document.querySelector('#menu'),nav=document.querySelector('#navigation');
 function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation menu');nav.classList.remove('open')}
 menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');nav.classList.toggle('open',open)});
+document.addEventListener('click',e=>{if(menu.getAttribute('aria-expanded')==='true'&&!nav.contains(e.target)&&!menu.contains(e.target))closeMenu()});
 nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){closeMenu();menu.focus()}});
 const dialog=document.querySelector('#preview'),content=document.querySelector('#preview-content');
