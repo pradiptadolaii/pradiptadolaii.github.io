@@ -1,0 +1,1 @@
+(()=>{const u=new URL(location.href);if(u.hash||u.searchParams.has('open')||u.searchParams.has('preview'))return;let entered=u.searchParams.get('entered')==='1';try{entered=entered||sessionStorage.getItem('portfolio-entered')==='1';if(entered)sessionStorage.setItem('portfolio-entered','1')}catch{}if(!entered)location.replace('entrance.html')})();
